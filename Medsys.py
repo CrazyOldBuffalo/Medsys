@@ -12,8 +12,9 @@ def main():
 
     #Checking for user input
     userEntry = input("Enter a condition:\n")
-    x = userEntry.lower()
-    userCondition = x.replace(" ", "_")
+    userEntry = userEntry.lower()
+    if " " in userEntry:
+        userCondition = userEntry.replace(" ", "_")
     print(userCondition)
 
 
