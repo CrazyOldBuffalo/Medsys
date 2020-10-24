@@ -1,10 +1,8 @@
-from art import *
+import json
 
 #Used to import the Conditions class and all objects into main()
 from Conditions import *
 
-#Used for listing all created objects in the class
-import weakref
 
 #Basic Function to List the menu at Launch
 def menu():
@@ -25,14 +23,15 @@ def menu():
         #Input data validation, Checks for empty or string values and catches errors
         #Valid input launches corresponding function
         try:
-            menuinp = int(input("Please Input your choice:  \n"))
+            menuinp = int(input("Please Input your choice: \n"))
             if (menuinp == 1):
                 menuloop = False
-                print("Listing conditions")
+                print("Listing conditions".center(80))
                 listing()
             elif (menuinp == 2):
                 menuloop = False
                 print("Searching")
+                search()
             elif (menuinp == 3):
                 menuloop = False
                 print("Adding Conditions, Not Implemented")
@@ -43,34 +42,20 @@ def menu():
                 print("Please Enter a value between 1 & 4")
         except ValueError:
             print("Incorrect Input try again")
-        except TypeError:
-            print("Incorrect Input try again")
         
 def listing():
-    for instance in Condition.instances:
-        print(instance.name)
-    print("Hello")           
+    line = 60 * "*"
+    print(line.center(80))
+    print(*allconditions.keys(), sep="\n")
+    
 
-                
-
-
-
+def search():
+    line = 60 * "*"
+    print(line.center(60))
 
 def main():
     menu()
     #printing all instances
     #Checking for user input
-    userEntry = input("Enter a condition:\n")
-    userEntry = userEntry.lower()
-    if " " in userEntry:
-        userCondition = userEntry.replace(" ", "_")
-    print(userCondition)
-
-
-    if userCondition in globals():
-        print("true")
-    else:
-        print("false")
-
 main()
 
