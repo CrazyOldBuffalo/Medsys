@@ -46,17 +46,31 @@ def listing():
     print(*allconditions.keys(), sep="\n")
     
 def printing(name):   
-    print(json.dumps(allconditions[name], indent=2))
+    print(json.dumps(allconditions[name], indent=2 ))
 
 def search():
     line = 41 * "*"
     print(line.center(40))
     name = input("*" + "Enter a Condition \n").title()
     if name in allconditions:
-        printing(name)
-    else:
+           printing(name)
+    else:  
         print("Not in Current Database")
-
+        researchloop = True
+        while researchloop == True:
+            research = input("Search Again?  Y/N").upper()
+            if len(research) > 1:
+                print("Please enter a Y/N")
+            elif research == "Y":
+                print("Searching again")
+                researchloop = False
+                search()
+            elif research == "N":
+                print("Returning to Menu")
+                researchloop = False
+                menu()
+            else:
+                print("Not a valid input")
 def main():
     menu()
 
