@@ -1,29 +1,26 @@
-import json
-
-#Used to import the Conditions class and all objects into main()
 from Conditions import *
-
-
+import json
+import pprint
 #Basic Function to List the menu at Launch
 def menu():
-    line =  60 * "*";
-    print(line.center(80))
-    print("*".center(21) + "MedSys".center(40) + "*".center(18))
-    print("*".center(21) + "Version 1.0 - © Tomasz Boberek 2020".center(45) + "*".center(8))
-    print(line.center(80))
+    line =  41 * "*";
+    print(line.center(40))
+    print("*" + "MedSys".center(35) + "*".center(9))
+    print("*" + "  Version 1.0 - © Tomasz Boberek 2020  ".center(30) + "*")
+    print(line.center(40))
     menuloop = True;
     while (menuloop == True):
-        print("*".center(21) + "Menu: ".center(40) + "*".center(18))
-        print(line.center(80))
-        print("*".center(21) + "1:                         List Conditions" + "*".center(14))
-        print("*".center(21) + "2:                       Search Conditions" + "*".center(14))
-        print("*".center(21) + "3:                      N/I Add Conditions" + "*".center(14))
-        print("*".center(21) + "4:                                    Quit" + "*".center(14))   
-        print(line.center(80))
+        print("*" + "Menu: ".center(39) + "*")
+        print(line.center(40))
+        print("*" + " 1:                    List Conditions " + "*")
+        print("*" + " 2:                  Search Conditions " + "*")
+        print("*" + " 3:                 N/I Add Conditions " + "*")
+        print("*" + " 4:                               Quit " + "*")   
+        print(line.center(40))
         #Input data validation, Checks for empty or string values and catches errors
         #Valid input launches corresponding function
         try:
-            menuinp = int(input("Please Input your choice: \n"))
+            menuinp = int(input("*" + " Please Input your choice:           "))
             if (menuinp == 1):
                 menuloop = False
                 print("Listing conditions".center(80))
@@ -44,18 +41,24 @@ def menu():
             print("Incorrect Input try again")
         
 def listing():
-    line = 60 * "*"
-    print(line.center(80))
+    line = 41 * "*"
+    print(line.center(40))
     print(*allconditions.keys(), sep="\n")
     
+def printing(name):   
+    print(json.dumps(allconditions[name], indent=2))
 
 def search():
-    line = 60 * "*"
-    print(line.center(60))
+    line = 41 * "*"
+    print(line.center(40))
+    name = input("*" + "Enter a Condition \n").title()
+    if name in allconditions:
+        printing(name)
+    else:
+        print("Not in Current Database")
 
 def main():
     menu()
-    #printing all instances
-    #Checking for user input
+
 main()
 
